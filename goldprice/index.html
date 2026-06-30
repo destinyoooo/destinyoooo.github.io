@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>金价换算</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main>
+    <header class="header">
+      <h1>金价换算</h1>
+      <p>国际金价常用美元/盎司，国内金价常用人民币/克。这里按 1 金衡盎司 = 31.1034768 克换算。</p>
+    </header>
+
+    <div class="layout">
+      <section class="panel" aria-label="金价换算工具">
+        <div class="tabs" role="tablist" aria-label="转换方向">
+          <button class="tab active" type="button" data-direction="intl-to-cn" role="tab" aria-selected="true">国际转国内</button>
+          <button class="tab" type="button" data-direction="cn-to-intl" role="tab" aria-selected="false">国内转国际</button>
+        </div>
+
+        <div class="field">
+          <label for="price" id="priceLabel">国际金价</label>
+          <div class="input-row">
+            <input id="price" type="number" step="0.01" min="0" inputmode="decimal" placeholder="例如 2300">
+            <span class="unit" id="priceUnit">美元/盎司</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="rate">美元兑人民币汇率</label>
+          <div class="input-row">
+            <input id="rate" type="number" step="0.0001" min="0" inputmode="decimal" placeholder="自动获取中">
+            <span class="unit">CNY / USD</span>
+          </div>
+          <div class="mini" id="rateDate">汇率日期：--</div>
+        </div>
+
+        <div class="actions">
+          <button class="primary" type="button" id="convert">换算</button>
+          <button class="secondary" type="button" id="refreshRate">刷新汇率</button>
+        </div>
+
+        <div class="result" aria-live="polite">
+          <div class="result-value" id="resultValue">--</div>
+          <div class="result-unit" id="resultUnit">等待输入</div>
+        </div>
+        <div class="status" id="status"></div>
+      </section>
+
+      <aside class="side" aria-label="换算依据">
+        <h2>换算依据</h2>
+        <div class="fact">
+          <span>国际报价</span>
+          <strong>美元/盎司</strong>
+        </div>
+        <div class="fact">
+          <span>国内报价</span>
+          <strong>人民币/克</strong>
+        </div>
+        <div class="fact">
+          <span>盎司换克</span>
+          <strong>31.1034768 克</strong>
+        </div>
+        <div class="fact">
+          <span>汇率来源</span>
+          <strong>Frankfurter API</strong>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="./converter.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
